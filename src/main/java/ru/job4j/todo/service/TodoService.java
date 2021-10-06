@@ -24,8 +24,6 @@ public class TodoService {
     }
 
     public void changeTaskStatus(int id, boolean done) {
-        Item itemToChange = HbmStore.instOf().findById(id);
-        itemToChange.setDone(!done);
-        HbmStore.instOf().update(itemToChange);
+        HbmStore.instOf().update(id, done);
     }
 }

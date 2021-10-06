@@ -8,10 +8,8 @@ public interface Store extends AutoCloseable {
 
     Item add(Item item);
 
-    void update(Item item);
+    void update(int id, boolean done);
 
     List<Item> findAll();
-
-    Item findById(int id);
 
 }

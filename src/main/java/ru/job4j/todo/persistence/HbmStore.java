@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.query.Query;
 import ru.job4j.todo.model.Item;
 
 import java.util.List;
@@ -36,10 +37,14 @@ public class HbmStore implements Store, AutoCloseable {
     }
 
     @Override
-    public void update(Item item) {
+    public void update(int id, boolean done) {
         Session session = sf.openSession();
         session.beginTransaction();
-        session.update(item);
+        String hql = "update ru.job4j.todo.model.Item i set i.done= :done where i.id = :id";
+        Query hqlQuery = session.createQuery(hql);
+        hqlQuery.setParameter("done", !done);
+        hqlQuery.setParameter("id", id);
+        hqlQuery.executeUpdate();
         session.getTransaction().commit();
         session.close();
     }
@@ -49,16 +54,6 @@ public class HbmStore implements Store, AutoCloseable {
         Session session = sf.openSession();
         session.beginTransaction();
         List result = session.createQuery("from ru.job4j.todo.model.Item").list();
-        session.getTransaction().commit();
-        session.close();
-        return result;
-    }
-
-    @Override
-    public Item findById(int id) {
-        Session session = sf.openSession();
-        session.beginTransaction();
-        Item result = session.get(Item.class, id);
         session.getTransaction().commit();
         session.close();
         return result;
