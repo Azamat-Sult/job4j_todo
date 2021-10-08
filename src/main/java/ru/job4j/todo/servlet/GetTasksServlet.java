@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 
-public class GetTasks extends HttpServlet {
+public class GetTasksServlet extends HttpServlet {
 
     private static final Gson GSON = new GsonBuilder().create();
 
