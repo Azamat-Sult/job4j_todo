@@ -67,15 +67,13 @@ public class HbmStore implements Store, AutoCloseable {
 
     @Override
     public User findUserByEmail(String email) {
-        List<User> users = this.tx(
+        return this.tx(
                 session -> {
                     String hql = "from ru.job4j.todo.model.User where email = :email";
                     Query hqlQuery = session.createQuery(hql);
                     hqlQuery.setParameter("email", email);
-                    return hqlQuery.list();
-                }
-        );
-        return (users.size() != 0) ? users.get(0) : null;
+                    return (User) hqlQuery.uniqueResult();
+                });
     }
 
     private <T> T tx(final Function<Session, T> command) {
