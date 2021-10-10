@@ -26,5 +26,8 @@
 
         <mapping class="ru.job4j.hibernate.books.Book" />
         <mapping class="ru.job4j.hibernate.books.Author" />
+
+        <mapping class="ru.job4j.hibernate.lazy.LazyCarModel" />
+        <mapping class="ru.job4j.hibernate.lazy.LazyCarBrand" />
     </session-factory>
 </hibernate-configuration>
