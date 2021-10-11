@@ -1,8 +1,8 @@
 package ru.job4j.todo.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,7 +14,8 @@ public class Item {
     private int id;
     private String task;
     private String description;
-    private LocalDate created = LocalDate.now();
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
     private boolean done = false;
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -34,6 +35,7 @@ public class Item {
         item.task = task;
         item.description = description;
         item.user = user;
+        item.created = new Date(System.currentTimeMillis());
         return item;
     }
 
@@ -61,11 +63,11 @@ public class Item {
         this.description = description;
     }
 
-    public LocalDate getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDate created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
@@ -83,6 +85,14 @@ public class Item {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     @Override
