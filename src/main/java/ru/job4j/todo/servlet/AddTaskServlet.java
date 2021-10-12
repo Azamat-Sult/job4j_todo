@@ -1,5 +1,6 @@
 package ru.job4j.todo.servlet;
 
+import ru.job4j.todo.model.User;
 import ru.job4j.todo.service.TodoService;
 
 import javax.servlet.*;
@@ -12,8 +13,8 @@ public class AddTaskServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String task = req.getParameter("task");
         String description = req.getParameter("description");
-        String userEmail = req.getParameter("userEmail");
+        User user = (User) req.getSession().getAttribute("user");
         String[] categories = req.getParameterValues("categories[]");
-        TodoService.instOf().addTask(task, description, userEmail, categories);
+        TodoService.instOf().addTask(task, description, user, categories);
     }
 }

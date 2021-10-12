@@ -6,7 +6,6 @@ function addTask() {
             data: {
                 task: $('#task').val(),
                 description: $('#description').val(),
-                userEmail: $('#userEmail').val(),
                 'categories[]': $('#categories').val()
             }
         }).done(function (data) {

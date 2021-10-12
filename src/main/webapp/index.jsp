@@ -79,7 +79,6 @@
                             </select>
                         </div>
                     </div>
-                    <input type="hidden" name="userEmail" id="userEmail" value="<c:out value='${user.email}'/>">
                     <button type="submit" class="btn btn-primary" onclick="addTask()">Добавить</button>
                 </form>
             </div>

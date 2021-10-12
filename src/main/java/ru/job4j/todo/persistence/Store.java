@@ -16,6 +16,8 @@ public interface Store extends AutoCloseable {
 
     List<Category> findAllCategories();
 
+    Category findCategoryById(String id);
+
     User addUser(User user);
 
     User findUserByEmail(String email);

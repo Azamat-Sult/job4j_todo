@@ -17,12 +17,10 @@ public class TodoService {
         return TodoService.Lazy.INST;
     }
 
-    public void addTask(String task, String description, String email, String[] categories) {
-        User user = HbmStore.instOf().findUserByEmail(email);
+    public void addTask(String task, String description, User user, String[] categories) {
         Item item = Item.of(task, description, user);
-        List<Category> allCategories = findAllCategories();
         for (String id : categories) {
-            item.addCategory(allCategories.get(Integer.parseInt(id) - 1));
+            item.addCategory(HbmStore.instOf().findCategoryById(id));
         }
         HbmStore.instOf().addTask(item);
     }

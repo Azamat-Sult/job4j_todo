@@ -66,6 +66,17 @@ public class HbmStore implements Store, AutoCloseable {
     }
 
     @Override
+    public Category findCategoryById(String id) {
+        return this.tx(
+                session -> {
+                    String hql = "from ru.job4j.todo.model.Category where id = :id";
+                    Query hqlQuery = session.createQuery(hql);
+                    hqlQuery.setParameter("id", Integer.parseInt(id));
+                    return (Category) hqlQuery.uniqueResult();
+                });
+    }
+
+    @Override
     public User addUser(User user) {
         this.tx(
                 session -> session.save(user)
