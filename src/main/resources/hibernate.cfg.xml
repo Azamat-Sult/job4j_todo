@@ -31,5 +31,9 @@
 
         <mapping class="ru.job4j.hibernate.lazy.LazyCarModel" />
         <mapping class="ru.job4j.hibernate.lazy.LazyCarBrand" />
+
+        <mapping class="ru.job4j.hibernate.cars2.Car" />
+        <mapping class="ru.job4j.hibernate.cars2.Engine" />
+        <mapping class="ru.job4j.hibernate.cars2.Driver" />
     </session-factory>
 </hibernate-configuration>
