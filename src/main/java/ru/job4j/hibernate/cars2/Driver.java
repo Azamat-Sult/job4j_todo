@@ -62,13 +62,12 @@ public class Driver {
             return false;
         }
         Driver driver = (Driver) o;
-        return id == driver.id && Objects.equals(name, driver.name)
-                && Objects.equals(cars, driver.cars);
+        return id == driver.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, cars);
+        return Objects.hash(id);
     }
 
     @Override

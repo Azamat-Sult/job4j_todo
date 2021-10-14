@@ -68,14 +68,12 @@ public class Engine {
             return false;
         }
         Engine engine = (Engine) o;
-        return id == engine.id && serialNum == engine.serialNum
-                && Objects.equals(model, engine.model)
-                && Objects.equals(car, engine.car);
+        return id == engine.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, model, serialNum, car);
+        return Objects.hash(id);
     }
 
     @Override
